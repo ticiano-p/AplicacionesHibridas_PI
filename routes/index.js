@@ -1,7 +1,6 @@
-// import productRouter from './productsRouter.js'
-import  routerUser  from './userRouter.js'
+import  routerUser  from './userRouter.js';
 
-export default function routerApi( app ){
+ function routerApi(app){
     app.use('/api/user', routerUser)
-    // app.use('/product', productRouter)
 }
+export default routerApi

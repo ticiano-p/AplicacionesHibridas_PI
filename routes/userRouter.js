@@ -1,11 +1,6 @@
-import {
-    getUsers, 
-    getUserId, 
-    newUser,
-    editUserId,
-    deleteUserId
-} from '../controllers/userController.js'
 import express from 'express'
+
+import {getUsers, getUserId, newUser,editUserId,deleteUserId} from '../controllers/userController.js'
 
 const routerUser = express.Router()
 

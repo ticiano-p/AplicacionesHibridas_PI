@@ -1,7 +1,7 @@
-import fs from 'fs/promises'
+import fs from 'fs/promises';
 const path = './users.json';
 
-export default class UserModel{
+ class UserModel{
     users = [];
     constructor(users=[]){
         this.users = users
@@ -27,7 +27,7 @@ export default class UserModel{
         try {
             const data = await fs.readFile(path);
             this.users = JSON.parse(data);
-            return data;
+            return this.users;
         } catch (error) {
             console.error(error);
         }
@@ -35,7 +35,7 @@ export default class UserModel{
 
     async getUserById(id){
         const users = await this.getUsers();
-        const user = users.find(  item => item.id == id  );
+        const user = users.find(item => item.id == id);
         return user ? user : {};
     }
 
@@ -70,9 +70,5 @@ export default class UserModel{
         }
     }
 }
+export default UserModel;
 
-
-// module.exports = { userManger };
-// /* module.exports = { 
-//                     userManger: userManger, 
-//                 }; */
