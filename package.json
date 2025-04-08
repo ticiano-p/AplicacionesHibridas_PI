@@ -1,0 +1,15 @@
+{
+  "name": "aplicacioneshibridas_pi",
+  "version": "1.0.0",
+  "description": "Primer examen Aplicaciones Hibridas",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo Dillon, Ticiano Piccino",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
