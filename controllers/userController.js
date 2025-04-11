@@ -65,7 +65,7 @@ export class UserController{
         let { id } = req.params
         const updateUser = await UserModel.updateUser(id, user)
         if( updateUser ){
-            res.json(JSON.parse(updateUser))
+            res.json(updateUser)
         } else {
             res.json({ "message": "Error al querer actualizr un usuario" })
         }

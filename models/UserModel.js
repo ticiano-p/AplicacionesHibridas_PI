@@ -77,12 +77,12 @@ export class UserModel{
     //     }
     // }
 
-    async updateUser(id, updatedUser) {
+    static async updateUser(id, updatedUser) {
         await this.getUsers();
         const index = this.users.findIndex(u => u.id == id);
       
         if (index === -1) {
-          `User with ID ${id} not found.`;
+          res.status(404).json({'message':`User with ID ${id} not found.`});
         }
       
         // Mantenemos el ID original y actualizamos el resto
