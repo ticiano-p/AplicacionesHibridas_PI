@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen _ 1</title>
+</head>
+<body>
+    <main>
+        <h1>Hola leo</h1>
+        <div>
+            <div class="a">
+                <p>Leo 1</p>
+            </div>
+            <div class="a">
+                <p>Leo 2</p>
+            </div>
+            <div class="a">
+                <p>Leo 3</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h3>Este es el footer</h3>
+    </footer>
+</body>
+</html>
+
+<style>
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+    main{
+        min-height: calc(80vh);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    main div{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+    }
+    main div div.a{
+        position: relative;
+        background-color: rgb(248, 204, 123);
+        border: 1px solid black;
+        border-radius: 8px;
+    }
+    main div div.a p{
+    }
+    footer{
+        text-align: center;
+    }
+</style>
