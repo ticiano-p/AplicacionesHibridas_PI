@@ -1,6 +1,6 @@
 import  routerUser  from './userRouter.js';
 
  function routerApi(app){
-    app.use('/api/user', routerUser)
+    app.use('/users', routerUser)
 }
 export default routerApi

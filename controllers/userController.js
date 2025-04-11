@@ -1,52 +1,83 @@
-import UserModel from "../models/UserModel.js";
+import { UserModel }  from "../models/UserModel.js";
 
-const userModel = new UserModel();
-
-const getUsers = async (req,res) => {
-    let userData = await userModel.getUsers()
-    res.json(userData)
-}
-
-const getUserId = async (req,res) => {
-    let { id } = req.params
-    let userData = await userModel.getUserById(id)
-    if(userData.id){
+export class UserController{
+    
+    static async getUsers (req,res) {
+        let userData = await UserModel.getUsers()
         res.json(userData)
-    }else{
-        res.status(404).json({'message': "Usuario no encotrado"})
-    }
-}
-
-const newUser = async (req,res) => {
-    let user = req.body
-    const newUser = await userModel.addUser(user)
-    if(newUser){
-        res.json(JSON.parse(newUser))
-    }else{
-        res.status(404).json({'message': "Usuario no creado"})
-    }
-}
-
-const editUserId = async (req, res) => {
-    let user = req.body
-    let { id } = req.params
-    const updateUser = await userModel.updateUser(id, user)
-    if( updateUser ){
-        res.json(JSON.parse(updateUser))
-    } else {
-        res.json({ "message": "Error al querer actualizr un usuario" })
     }
 
-}
-
-const deleteUserId = async (req, res) => {
-    let { id } = req.params
-    const users = await userModel.deleteUser(id)
-    if(!users){
-        res.json(users)
-    }else{
-        res.json(JSON.parse(users))
+    static async getUserId (req,res) {
+        let { id } = req.params
+        let userData = await UserModel.getUserById(id)
+        if(userData.id){
+            res.json(userData)
+        }else{
+            res.status(404).json({'message': "Usuario no encotrado"})
+        }
     }
-}
+    
+    static async getUserEmail (req, res){
+        console.log(req)
+        let { email } = req.params
+        console.log(email)
+        let userData = await UserModel.getUserByEmail(email)
+        console.log(userData)
+        if(userData){
+            res.json(userData)
+        }else{
+            res.status(404).json({'message': "Usuario no encontrado"})
+        }
+    }
 
-export {getUsers, getUserId, newUser, editUserId, deleteUserId}
+    static async getUserGender (req, res){
+        let { gender } = req.params
+        let userData = await UserModel.getUserByGender(gender)
+        if(userData){
+            res.json(userData)
+        }else{
+            res.status(404).json({'message': "Usuario no encontrado"})
+        }
+    }
+
+    static async getUserFirstName (req, res){
+        let { firstName } = req.params
+        let userData = await UserModel.getUserByFirstName(firstName) 
+        if(userData){
+            res.json(userData)
+        }else{
+            res.status(404).json({'message': "Usuario no encontrado"})
+        }
+    }
+
+    static async createUser (req,res) {
+        let user = req.body
+        const newUser = await UserModel.createUser(user)
+        if(newUser){
+            res.json(JSON.parse(newUser))
+        }else{
+            res.status(404).json({'message': "Usuario no creado"})
+        }
+    }
+
+    static async editUserId (req, res) {
+        let user = req.body
+        let { id } = req.params
+        const updateUser = await UserModel.updateUser(id, user)
+        if( updateUser ){
+            res.json(JSON.parse(updateUser))
+        } else {
+            res.json({ "message": "Error al querer actualizr un usuario" })
+        }
+    }
+
+    // static async deleteUserId (req, res) {
+    //     let { id } = req.params
+    //     const users = await userModel.deleteUser(id)
+    //     if(!users){
+    //         res.json(users)
+    //     }else{
+    //         res.json(JSON.parse(users))
+    //     }
+    // }
+}
