@@ -60,29 +60,29 @@ export class UserModel{
         return user ? user : false
     }
 
-    // async deleteUser(id){
-    //     await this.getUsers()
-    //     const pos = this.users.findIndex( u => u.id == id)
-    //     if( pos == -1){
-    //         return false
-    //     }else{
-    //         this.users.splice(pos, 1)
-    //         const data = JSON.stringify( this.users, null, 2);
-    //         try {
-    //             await fs.writeFile( path, data );
-    //             return data;
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     }
-    // }
+    static async deleteUser(id){
+        await this.getUsers()
+        const pos = this.users.findIndex( u => u.id == id)
+        if( pos == -1){
+            return false
+        }else{
+            this.users.splice(pos, 1)
+            const data = JSON.stringify( this.users, null, 2);
+            try {
+                await fs.writeFile( path, data );
+                return data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 
     static async updateUser(id, updatedUser) {
         await this.getUsers();
         const index = this.users.findIndex(u => u.id == id);
       
         if (index === -1) {
-          res.status(404).json({'message':`User with ID ${id} not found.`});
+          res.status(404).json({'message':`No existe un usuario con esa ID`});
         }
       
         // Mantenemos el ID original y actualizamos el resto

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "firstName": "Lucía",
+    "firstName": "Martinez",
     "lastName": "Martínez",
     "gender": "Female",
     "photo": "https://example.com/fotos/lucia.jpg",
@@ -46,21 +46,5 @@
     "createdAt": "2023-06-20T10:00:00",
     "lastLogin": "2025-03-30T20:00:00",
     "active": false
-  },
-  {
-    "firstName": "Leo",
-    "lastName": "Dillon",
-    "gender": "Robot",
-    "photo": "https://example.com/fotos/lucia.jpg",
-    "birthDate": "1999-03-16",
-    "dni": "417814369",
-    "email": "leo.dillon@example.com",
-    "address": "Av. Siempre Viva 123, Buenos Aires",
-    "phone": "+54 9 11 2345 6789",
-    "password": "Leo2025!",
-    "createdAt": "2025-01-10T08:45:00",
-    "lastLogin": "2025-04-11T09:30:00",
-    "active": true,
-    "id": "c674fb82-7697-4578-b8d8-748a2fc0d599"
   }
 ]

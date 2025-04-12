@@ -71,13 +71,13 @@ export class UserController{
         }
     }
 
-    // static async deleteUserId (req, res) {
-    //     let { id } = req.params
-    //     const users = await userModel.deleteUser(id)
-    //     if(!users){
-    //         res.json(users)
-    //     }else{
-    //         res.json(JSON.parse(users))
-    //     }
-    // }
+    static async deleteUserId (req, res) {
+        let { id } = req.params
+        const users = await UserModel.deleteUser(id)
+        if(!users){
+            res.json(users)
+        }else{
+            res.json(JSON.parse(users))
+        }
+    }
 }

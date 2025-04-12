@@ -18,8 +18,6 @@ routerUser.post("/", UserController.createUser)
 
 routerUser.put("/:id", UserController.editUserId)
 
-// routerUser.patch('/:id', UserController.editParcilUserId)
-
-// routerUser.delete("/:id", UserController.deleteUserId)
+routerUser.delete("/:id", UserController.deleteUserId)
 
 export default routerUser
