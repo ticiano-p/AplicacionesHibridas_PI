@@ -13,7 +13,22 @@
     "password": "lucia2025!",
     "createdAt": "2025-01-10T08:45:00",
     "lastLogin": "2025-04-11T09:30:00",
-    "active": true
+    "active": true,
+    "Name": "Escuela Nuestra Señoradd",
+    "CUE": "3466746",
+    "Address": "Av. Rivadavia 10200",
+    "City": "Lincoln",
+    "Province": "Buenos Aires",
+    "Phones": [
+      "011-4567-8901",
+      "011-4567-8902"
+    ],
+    "Emails": [
+      "info@tecnica3huergo.edu.ar"
+    ],
+    "Creation_Date": "1972-05-10",
+    "Level": "Technical",
+    "Type": "Public"
   },
   {
     "id": 2,
@@ -33,7 +48,7 @@
   },
   {
     "id": 3,
-    "firstName": "María",
+    "firstName": "Maríaaaa",
     "lastName": "Gómez",
     "gender": "Female",
     "photo": "https://example.com/fotos/maria.jpg",

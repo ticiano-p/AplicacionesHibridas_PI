@@ -1,0 +1,74 @@
+[
+  {
+    "School_ID": 1234,
+    "Name": "Escuela Primaria N° 45 Manuel Belgrano",
+    "CUE": "123456789",
+    "Address": "Av. San Martín 345",
+    "City": "San Miguel",
+    "Province": "Buenos Aires",
+    "Phones": [
+      "011-4444-5678",
+      "011-4444-1234"
+    ],
+    "Emails": [
+      "info@escuelabelgrano.edu.ar",
+      "contacto@escuelabelgrano.edu.ar"
+    ],
+    "Creation_Date": "1980-03-15",
+    "Level": "Primary",
+    "Type": "Public"
+  },
+  {
+    "School_ID": 5678,
+    "Name": "Instituto San José",
+    "CUE": "987654321",
+    "Address": "Calle 9 de Julio 789",
+    "City": "Rosario",
+    "Province": "Santa Fe",
+    "Phones": [
+      "0341-555-7890"
+    ],
+    "Emails": [
+      "secretaria@sanjose.edu.ar"
+    ],
+    "Creation_Date": "1995-08-22",
+    "Level": "Secondary",
+    "Type": "Private"
+  },
+  {
+    "School_ID": 9101,
+    "Name": "Escuela Técnica N° 3 Ing. Huergo",
+    "CUE": "112233445",
+    "Address": "Av. Rivadavia 10200",
+    "City": "Ciudad Autónoma de Buenos Aires",
+    "Province": "CABA",
+    "Phones": [
+      "011-4567-8901",
+      "011-4567-8902"
+    ],
+    "Emails": [
+      "info@tecnica3huergo.edu.ar"
+    ],
+    "Creation_Date": "1972-05-10",
+    "Level": "Technical",
+    "Type": "Public"
+  },
+  {
+    "School_ID": 9101,
+    "Name": "Escuela Técnica N° 12",
+    "CUE": "112233445",
+    "Address": "Av. Rivadavia 10200",
+    "City": "Ciudad Autónoma de Buenos Aires",
+    "Province": "Buenos Aires",
+    "Phones": [
+      "011-4567-8901",
+      "011-4567-8902"
+    ],
+    "Emails": [
+      "info@tecnica3huergo.edu.ar"
+    ],
+    "Creation_Date": "1972-05-10",
+    "Level": "Technical",
+    "Type": "Public"
+  }
+]
