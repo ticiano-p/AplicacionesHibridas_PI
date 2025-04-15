@@ -6,17 +6,17 @@ const routerSchool = express.Router()
 
 routerSchool.get("/", schoolController.getSchool)
 
- routerSchool.get("/:id", schoolController.getSchoolId)
+routerSchool.get("/:id", schoolController.getSchoolId)
 
- routerSchool.get("/:Province/Province", schoolController.getSchoolProvince)
+routerSchool.get("/:Province/Province", schoolController.getSchoolProvince)
 
- routerSchool.get("/:Type/Type", schoolController.getSchoolType)
+routerSchool.get("/:Type/Type", schoolController.getSchoolType)
 
- routerSchool.get("/:Name/Name", schoolController.getSchoolFirstName)
+routerSchool.get("/:Name/Name", schoolController.getSchoolFirstName)
 
- routerSchool.post("/", schoolController.createSchool)
+routerSchool.post("/", schoolController.createSchool)
 
- routerSchool.put("/:id", schoolController.editSchoolId)
+routerSchool.put("/:id", schoolController.editSchoolId)
 
 routerSchool.delete("/:id", schoolController.deleteSchoolId)
 
