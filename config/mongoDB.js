@@ -2,10 +2,8 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 
 const MDB_USER = process.env.MDB_USER
-const MDB_SERVER = process.env.MDB_SERVER
 const MDB_PASSWORD = process.env.MDB_PASSWORD
-
-console.log(MDB_PASSWORD, MDB_SERVER, MDB_USER)
+const MDB_SERVER = process.env.MDB_SERVER
 
 const uri = `mongodb+srv://${MDB_USER}:${MDB_PASSWORD}@${MDB_SERVER}/?retryWrites=true&w=majority&appName=Cluster0`
 
