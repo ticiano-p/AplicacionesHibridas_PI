@@ -8,80 +8,92 @@ export class schoolController{
         res.json(SchoolData)
     }
 
-    static async getSchoolId (req,res) {
-        let { id } = req.params
-        let userSchool = await ScholModel.findById(id)
-        if(userSchool){
-            res.json(userSchool)
-        }else{
-            res.status(404).json({'message': "Escuela no encotrado"})
+    static async getSchoolId(req, res) {
+        try {
+            const { id } = req.params;
+            const SchoolID = await ScholModel.findById(id);
+            res.status(200).json(SchoolID);
+        } catch (error) {
+            res.status(400).json({ message: `Escuela no encontrada.` });
         }
     }
     
+    
     static async getSchoolProvince (req, res){
+        try {
         let { Province } = req.params
-        let SchoolData = await ScholModel.findOne({Province: Province})
-        if(SchoolData){
-            res.json(SchoolData)
-        }else{
-            res.status(404).json({'message': "Escuela no encontrado"})
+        let ScholData = await ScholModel.find({Province: Province})
+        if(ScholData.length === 0){
+            return res.status(404).json({ message: `No se encontraron escuelas en la provincia de ${Province}.` });
+        } 
+        res.status(200).json(ScholData);
+
+        } catch (error) {
+            res.status(500).json({ message: "Error del servidor al buscar escuelas." });
         }
+        
     }
 
-    static async getSchoolType (req, res){
-        let { Type } = req.params
-        let SchoolData = await ScholModel.findOne({Type})
-        if(SchoolData){
-            res.json(SchoolData)
-        }else{
-            res.status(404).json({'message': "Escuela no encontrado"})
+    static async getSchoolType(req, res) {
+        try {
+            const { Type } = req.params;
+            const ScholData = await ScholModel.find({ Type: Type });
+            if (ScholData.length === 0) {
+                return res.status(404).json({ message: `No se encontraron escuelas del tipo: ${Type}.` });
+            }
+            res.status(200).json(ScholData);
+        } catch (error) {
+            res.status(500).json({ message: "Error del servidor al buscar escuelas." });
         }
     }
+    
 
     static async getSchoolFirstName (req, res){
+        try {
         let { Name } = req.params
-        let SchoolData = await ScholModel.getSchoolFirstName(Name) 
-        if(SchoolData){
-            res.json(SchoolData)
-        }else{
-            res.status(404).json({'message': "Escuela no encontrado"})
+        let ScholData = await ScholModel.find({firstName: Name}) 
+        if(ScholData.length === 0){
+            return res.status(404).json({ message: `No se encontro ninguna escuela con el nombre: ${Name}.` });
         }
+        res.status(200).json(ScholData);
+        } catch (error) {
+            res.status(500).json({ message: "Error del servidor al buscar la escuelas." });
+
+        }
+        
     }
 
     static async createSchool (req,res) {
-        let school = req.body
-        const newSchool = await new ScholModel(school)
-        newSchool.save()
-        if(newSchool){
-            res.json(JSON.parse(newSchool))
-        }else{
-            res.status(404).json({'message': "Escuela no creado"})
+        try {
+        const school = req.body
+        const newSchool =  new ScholModel(school)
+        await newSchool.save() 
+        res.status(201).json(newSchool)
+        } catch (error) {
+                        res.status(404).json({'message': "Escuela no creado"})
         }
+        
     }
 
-    // static async editSchoolId(req, res) {
-    //     try {
-    //       const id = req.params.id;
-    //       const datosActualizados = req.body;
-    //       const escuelaActualizada = await ScholModel.updateSchool(id, datosActualizados);
-    //       res.status(200).json({
-    //         escuela: JSON.parse(escuelaActualizada) // por si es un string JSON
-    //       });
-    //     } catch (error) {
-    //       res.status(404).json({ error: error.message });
-    //     }
-    //   }
+    static async editSchoolId(req, res) {
+        try {
+          const id = req.params.id;
+          const datosActualizados = req.body;
+          const escuelaActualizada = await ScholModel.findByIdAndUpdate(id, datosActualizados, {new: true});
+          res.status(200).json({escuelaActualizada });
+        } catch (error) {
+          res.status(404).json({'message': `Escuela con el ID: ${req.params.id} no fue encontrado`});
+        }
+      }
 
-    // static async deleteSchoolId (req, res) {
-    //     let { id } = req.params
-    //     const school = await ScholModel.deleteUser(id)
-    //     if(school){
-    //         // res.json(school)
-    //         res.json(JSON.parse(school))
-
-    //     }else{
-    //         res.status(404).json({'message': "La escuela no existe"})
-    //     }
+    static async deleteSchoolId (req, res) {
+        try {
+            let { id } = req.params
+        const school = await ScholModel.findByIdAndDelete(id)
+        res.status(200).json({ mensaje: 'Usuario eliminado' });
+        } catch (error) {
+            res.status(404).json({'message': `Escuela con el ID: ${req.params.id} no fue encontrado`})
+        }
         
-    // }
+    }
 }
