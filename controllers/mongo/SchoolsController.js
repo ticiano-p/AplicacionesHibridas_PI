@@ -1,5 +1,6 @@
 // controllers/UserController.js
 import { ScholModel } from '../../models/mongo/ScholsModel.js'
+import { PaymentModel } from '../../models/mongo/PaymentModel.js';
 
 export class schoolController{
     
@@ -65,12 +66,22 @@ export class schoolController{
 
     static async createSchool (req,res) {
         try {
-        const school = req.body
-        const newSchool =  new ScholModel(school)
-        await newSchool.save() 
-        res.status(201).json(newSchool)
+            const paymentSchool = PaymentModel.findOne({
+                issuedTo: req.body.user_id,
+                status: 'paid',
+                paymentType: 'create_school'
+            })
+            if( !paymentSchool ){
+                res.status(403).json({
+                    message: 'Deber realizar el pago correspondiente para generar una escuela'
+                })
+            }
+            const school = req.body
+            const newSchool =  new ScholModel(school)
+            await newSchool.save() 
+            res.status(201).json(newSchool)
         } catch (error) {
-                        res.status(404).json({'message': "Escuela no creado"})
+            res.status(404).json({message: "Escuela no creada", error})
         }
         
     }

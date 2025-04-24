@@ -50,6 +50,17 @@ export class schoolController{
         }
     }
 
+    /*
+        generarProfesor(req, res){
+            req.body {
+                email: leonardo.dillon@davinci.edu,
+                rol: ,
+                peticion: ,
+
+            }
+        }
+    */
+
     static async createSchool (req,res) {
         let school = req.body
         const newSchool = await SchoolsModel.createSchool(school)

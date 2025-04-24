@@ -61,6 +61,21 @@ export class UserController{
         }
     }
 
+    /*
+        agregarRol(req, res){
+
+        }
+
+        crearEscuela(){
+            pagoCouta()
+            true{
+                SchoolController.crearEscuela
+            }else{
+                return paga
+            }
+        }
+    */
+
     static async editUserId (req, res) {
         let user = req.body
         let { id } = req.params
