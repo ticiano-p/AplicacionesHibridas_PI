@@ -17,6 +17,8 @@ routerUser.get("/:firstName/firstName", UserController.getUserByFirstName)
 
 routerUser.post("/", UserController.createUser)
 
+routerUser.post("/auth", UserController.auth)
+
 routerUser.put("/:id", UserController.editUserById)
 
 routerUser.delete("/:id", UserController.deleteUserById)
