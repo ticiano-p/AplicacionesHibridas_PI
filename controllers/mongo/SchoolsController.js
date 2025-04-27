@@ -66,7 +66,7 @@ export class schoolController{
 
     static async createSchool (req,res) {
         try {
-            const paymentSchool = PaymentModel.findOne({
+            const paymentSchool = await PaymentModel.findOne({
                 issuedTo: req.body.user_id,
                 status: 'paid',
                 paymentType: 'create_school'
