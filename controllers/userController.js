@@ -1,4 +1,6 @@
 import { UserModel }  from "../models/UserModel.js";
+import bcrypt from 'bcrypt';
+const salt = 10
 // import { UserModel } from "../models/mongo/UserModel.js"
 
 export class UserController{
@@ -53,9 +55,20 @@ export class UserController{
 
     static async createUser (req,res) {
         let user = req.body
+        if( !user.firstName || !user.password  ){
+            res.status(403).json({
+                message: "Debe completar todos los parametros"
+            })
+        }
+        const passwordHash = await bcrypt.hash(user.password, salt)
+        user.password = passwordHash 
+        console.log(user)
         const newUser = await UserModel.createUser(user)
         if(newUser){
-            res.json(JSON.parse(newUser))
+            res.json({
+                message: "Usuario Creado",
+                data: JSON.parse(newUser)
+            })
         }else{
             res.status(404).json({'message': "Usuario no creado"})
         }
