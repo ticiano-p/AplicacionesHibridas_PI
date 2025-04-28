@@ -64,27 +64,30 @@ export class schoolController{
         
     }
 
-    static async createSchool (req,res) {
+    static async createSchool (req, res) {
         try {
             const paymentSchool = await PaymentModel.findOne({
                 issuedTo: req.body.user_id,
                 status: 'paid',
                 paymentType: 'create_school'
-            })
-            if( !paymentSchool ){
-                res.status(403).json({
-                    message: 'Deber realizar el pago correspondiente para generar una escuela'
-                })
+            });
+            console.log('a')
+            if (!paymentSchool) {
+                return res.status(403).json({
+                    message: 'Debe realizar el pago correspondiente para generar una escuela'
+                });
             }
-            const school = req.body
-            const newSchool =  new SchoolModel(school)
-            await newSchool.save() 
-            res.status(201).json(newSchool)
+   
+            const school = req.body;
+            const newSchool = new SchoolModel(school);
+            console.log('b')
+            await newSchool.save();
+            res.status(201).json(newSchool);
         } catch (error) {
-            res.status(404).json({message: "Escuela no creada", error})
+            res.status(404).json({ message: "Escuela no creada", error });
         }
-        
     }
+
 
     static async editSchoolId(req, res) {
         try {

@@ -3,7 +3,7 @@ import mongoose, { Types } from 'mongoose';
 const PaymentSchema = new mongoose.Schema({
     issuedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     schoolId: { type: mongoose.Schema.Types.ObjectId, ref: 'School', default: null },
-    concept: { type: String, required: true },
+    concept: { type: String, required: true },                                  
     amount: { type: Number, required: true },
     dueDate: { type: Date, required: true },
     issuedAt: { type: Date, default: Date.now },

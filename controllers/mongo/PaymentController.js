@@ -2,20 +2,24 @@ import { PaymentModel } from "../../models/mongo/PaymentModel.js";
 
 export class PaymentController {
 
+    
     static async createSchool( req, res ){
-        const user_id = req.body.id
+        const user_id = req.body.issuedTo
+
+        console.log(req.body)
+
         const exist = await PaymentModel.findOne({
             issuedTo: user_id,
             paymentType: 'create_school',
             status: 'pending'
         });
-        
+    
         if (exist) {
-            return res.status(400).json({ 
-                message: 'Ya generaste una solicitud de pago. Debe ser abonada primero.' 
+            return res.status(400).json({
+                message: 'Ya generaste una solicitud de pago. Debe ser abonada primero.'
             });
         }
-    
+
         const payment = await PaymentModel.create({
             issuedTo: user_id,
             concept: 'Creación de escuela',
@@ -27,9 +31,10 @@ export class PaymentController {
         res.status(200).json({ message: 'Solicitud de pago generada', payment });
     }
 
+
     static async editPayment (req, res){
         try {
-            const editPayment = PaymentModel.findByIdAndUpdate( 
+            const editPayment = await PaymentModel.findByIdAndUpdate( 
                 req.params.id, 
                 req.body, 
                 { new: true }
