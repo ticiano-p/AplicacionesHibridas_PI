@@ -19,7 +19,6 @@ export class schoolController{
         }
     }
     
-    
     static async getSchoolProvince (req, res){
         try {
         let { Province } = req.params
@@ -48,7 +47,6 @@ export class schoolController{
         }
     }
     
-
     static async getSchoolFirstName (req, res){
         try {
         let { Name } = req.params
@@ -66,28 +64,28 @@ export class schoolController{
 
     static async createSchool (req, res) {
         try {
+            console.log(req.body)
             const paymentSchool = await PaymentModel.findOne({
                 issuedTo: req.body.user_id,
                 status: 'paid',
                 paymentType: 'create_school'
             });
-            console.log('a')
             if (!paymentSchool) {
                 return res.status(403).json({
                     message: 'Debe realizar el pago correspondiente para generar una escuela'
                 });
             }
-   
+            if (!req.body.CUE) {
+                return res.status(400).json({ message: 'El campo CUE es obligatorio' });
+            }
             const school = req.body;
             const newSchool = new SchoolModel(school);
-            console.log('b')
             await newSchool.save();
             res.status(201).json(newSchool);
         } catch (error) {
             res.status(404).json({ message: "Escuela no creada", error });
         }
     }
-
 
     static async editSchoolId(req, res) {
         try {
