@@ -6,5 +6,7 @@ import routerPayment from './paymentRouter.js'
     app.use('/users', routerUser)
     app.use('/schools', routerSchool)
     app.use('/payment', routerPayment)
+    app.use('/schoolPost', routerPayment)
+
 }
 export default routerApi
