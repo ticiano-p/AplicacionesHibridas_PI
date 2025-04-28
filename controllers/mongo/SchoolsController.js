@@ -1,18 +1,18 @@
 // controllers/UserController.js
-import { ScholModel } from '../../models/mongo/ScholsModel.js'
+import { SchoolModel } from '../../models/mongo/SchoolModel.js'
 import { PaymentModel } from '../../models/mongo/PaymentModel.js';
 
 export class schoolController{
     
     static async getSchool (req,res) {
-        let SchoolData = await ScholModel.find()
+        let SchoolData = await SchoolModel.find()
         res.json(SchoolData)
     }
 
     static async getSchoolId(req, res) {
         try {
             const { id } = req.params;
-            const SchoolID = await ScholModel.findById(id);
+            const SchoolID = await SchoolModel.findById(id);
             res.status(200).json(SchoolID);
         } catch (error) {
             res.status(400).json({ message: `Escuela no encontrada.` });
@@ -23,7 +23,7 @@ export class schoolController{
     static async getSchoolProvince (req, res){
         try {
         let { Province } = req.params
-        let ScholData = await ScholModel.find({Province: Province})
+        let ScholData = await SchoolModel.find({Province: Province})
         if(ScholData.length === 0){
             return res.status(404).json({ message: `No se encontraron escuelas en la provincia de ${Province}.` });
         } 
@@ -38,7 +38,7 @@ export class schoolController{
     static async getSchoolType(req, res) {
         try {
             const { Type } = req.params;
-            const ScholData = await ScholModel.find({ Type: Type });
+            const ScholData = await SchoolModel.find({ Type: Type });
             if (ScholData.length === 0) {
                 return res.status(404).json({ message: `No se encontraron escuelas del tipo: ${Type}.` });
             }
@@ -52,7 +52,7 @@ export class schoolController{
     static async getSchoolFirstName (req, res){
         try {
         let { Name } = req.params
-        let ScholData = await ScholModel.find({firstName: Name}) 
+        let ScholData = await SchoolModel.find({firstName: Name}) 
         if(ScholData.length === 0){
             return res.status(404).json({ message: `No se encontro ninguna escuela con el nombre: ${Name}.` });
         }
@@ -77,7 +77,7 @@ export class schoolController{
                 })
             }
             const school = req.body
-            const newSchool =  new ScholModel(school)
+            const newSchool =  new SchoolModel(school)
             await newSchool.save() 
             res.status(201).json(newSchool)
         } catch (error) {
@@ -90,7 +90,7 @@ export class schoolController{
         try {
           const id = req.params.id;
           const datosActualizados = req.body;
-          const escuelaActualizada = await ScholModel.findByIdAndUpdate(id, datosActualizados, {new: true});
+          const escuelaActualizada = await SchoolModel.findByIdAndUpdate(id, datosActualizados, {new: true});
           res.status(200).json({escuelaActualizada });
         } catch (error) {
           res.status(404).json({'message': `Escuela con el ID: ${req.params.id} no fue encontrado`});
@@ -100,7 +100,7 @@ export class schoolController{
     static async deleteSchoolId (req, res) {
         try {
             let { id } = req.params
-        const school = await ScholModel.findByIdAndDelete(id)
+        const school = await SchoolModel.findByIdAndDelete(id)
         res.status(200).json({ mensaje: 'Usuario eliminado' });
         } catch (error) {
             res.status(404).json({'message': `Escuela con el ID: ${req.params.id} no fue encontrado`})
