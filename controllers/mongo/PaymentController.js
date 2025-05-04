@@ -2,11 +2,23 @@ import { PaymentModel } from "../../models/mongo/PaymentModel.js";
 
 export class PaymentController {
 
-    
+    static async getPayments( req, res ){
+        try {
+            const payments = await PaymentModel.find()
+            res.json({
+                message: "Payments encontrados",
+                data: payments
+            })
+        } catch (error) {
+            res.status(500).json({
+                message: "Error",
+                data: error
+            })
+        }
+    }
+
     static async createPayment( req, res ){
         const user_id = req.body.issuedTo
-
-        console.log(req.body)
 
         const exist = await PaymentModel.findOne({
             issuedTo: user_id,
@@ -50,6 +62,19 @@ export class PaymentController {
         } catch (error) {
             res.status(500).json({
                 message: 'Error el querer actualizar el pago'
+            })
+        }
+    }
+
+    static async deletePayment (req, res){
+        try {
+            const payment = await PaymentModel.findByIdAndDelete(req.params.id)
+            if( !payment ) res.status(404).json({ message: "Payment no encontrado" })
+            res.json({ message: "Payment Eliminado" })
+        } catch (error) {
+            res.status(500).json({
+                message: "Error",
+                error: error
             })
         }
     }
