@@ -4,8 +4,8 @@ import { PaymentController } from "../controllers/mongo/PaymentController.js";
 
 const routerPayment = express.Router()
 
-routerPayment.post ('/createSchool', PaymentController.createSchool )
+routerPayment.post ('/', PaymentController.createPayment )
 
-routerPayment.put('/:id/editPayment', PaymentController.editPayment )
+routerPayment.put('/:id', PaymentController.editPayment )
 
 export default routerPayment

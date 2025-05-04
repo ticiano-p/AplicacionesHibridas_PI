@@ -3,7 +3,7 @@ import { PaymentModel } from "../../models/mongo/PaymentModel.js";
 export class PaymentController {
 
     
-    static async createSchool( req, res ){
+    static async createPayment( req, res ){
         const user_id = req.body.issuedTo
 
         console.log(req.body)
