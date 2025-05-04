@@ -78,7 +78,9 @@ export class UserController {
 
 	static async getUserByGender(req, res){
 		try {
-			const user = await UserModel.find({gender: req.params.gender })
+			const regexGender = new RegExp(req.params.gender, 'i');
+			// Este regex trae los valores que contengan { req.params.Genre }, con 'i' ( No case Sensitive )
+			const user = await UserModel.find({gender: regexGender })
 			if(user){
 				res.status(200).json(user)
 			}else{
@@ -90,7 +92,7 @@ export class UserController {
 	}
 
 	static async getUserByFirstName(req, res){
-		try {
+		try {	
 			const regexFirstName = new RegExp(req.params.firstName, 'i');
 			// Este regex trae los valores que contengan { req.params.firstName }, con 'i' ( No case Sensitive )
 			const user = await UserModel.find({firstName: regexFirstName }).limit(2)
