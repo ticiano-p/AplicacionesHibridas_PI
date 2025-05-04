@@ -7,8 +7,6 @@ export class AnnouncementController {
     static async createAnnouncement(req, res){
         try {
             const data = req.body
-            const school_id = req.params.school_id
-            data.school_id = school_id
             const existUser = UserModel.findOne({ 
                 "_id": data.user_id
             })
@@ -18,7 +16,7 @@ export class AnnouncementController {
                 })
             }
             const existSchool = SchoolModel.findOne({
-                "_id": school_id
+                "_id": data.school_id
             }) 
             if( !existSchool ){
                 res.status(403).json({
