@@ -9,7 +9,7 @@ const schoolSchema = new mongoose.Schema({
     province: { type: String, required: true },
     phones: { type: [String], required: true }, 
     Emails: { type: [String], required: true, unique: true },  
-    creation_date: { type: Date, default: Date.new },  
+    creation_date: { type: Date, default: Date.now },  
     level: { type: String, required: true },  
     type: { type: String, required: true }      
   }, {

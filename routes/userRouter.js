@@ -158,7 +158,7 @@ routerUser.get("/:id", UserController.getUserById)
  *               schema:
  *                 $ref: '#/components/schemas/User'
  *         404:
- *           description: Nout found user by email
+ *           description: Not found user by email
  */
 routerUser.get("/:email/email", UserController.getUserByEmail)
 

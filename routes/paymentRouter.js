@@ -78,7 +78,7 @@ const routerPayment = express.Router()
  * @swagger
  * tags:
  *   - name: Payment
- *     description: Operaciones relacionadas con pagos
+ *     description: Payment-related operations
  */
 
 /**

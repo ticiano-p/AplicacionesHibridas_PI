@@ -5,7 +5,7 @@ import routerAnnouncement from './announcementRouter.js';
 
  function routerApi(app){
     app.use('/users', routerUser)
-    app.use('/schools', routerSchool)
+    app.use('/school', routerSchool)
     app.use('/announcement', routerAnnouncement)
     app.use('/payment', routerPayment)
 

@@ -21,8 +21,8 @@ export class schoolController{
     
     static async getSchoolProvince (req, res){
         try {
-        let { Province } = req.params
-        let ScholData = await SchoolModel.find({Province: Province})
+        let { province } = req.params
+        let ScholData = await SchoolModel.find({province: province})
         if(ScholData.length === 0){
             return res.status(404).json({ message: `No se encontraron escuelas en la provincia de ${Province}.` });
         } 
@@ -36,10 +36,10 @@ export class schoolController{
 
     static async getSchoolType(req, res) {
         try {
-            const { Type } = req.params;
-            const ScholData = await SchoolModel.find({ Type: Type });
+            const { type } = req.params;
+            const ScholData = await SchoolModel.find({ type: type });
             if (ScholData.length === 0) {
-                return res.status(404).json({ message: `No se encontraron escuelas del tipo: ${Type}.` });
+                return res.status(404).json({ message: `No se encontraron escuelas del tipo: ${type}.` });
             }
             res.status(200).json(ScholData);
         } catch (error) {
@@ -47,12 +47,12 @@ export class schoolController{
         }
     }
     
-    static async getSchoolFirstName (req, res){
+    static async getSchoolName (req, res){
         try {
-        let { Name } = req.params
-        let ScholData = await SchoolModel.find({firstName: Name}) 
+        let { name } = req.params
+        let ScholData = await SchoolModel.find({name: name}) 
         if(ScholData.length === 0){
-            return res.status(404).json({ message: `No se encontro ninguna escuela con el nombre: ${Name}.` });
+            return res.status(404).json({ message: `No se encontro ninguna escuela con el nombre: ${name}.` });
         }
         res.status(200).json(ScholData);
         } catch (error) {
@@ -64,7 +64,6 @@ export class schoolController{
 
     static async createSchool (req, res) {
         try {
-            console.log(req.body)
             const paymentSchool = await PaymentModel.findOne({
                 issuedTo: req.body.user_id,
                 status: 'paid',
@@ -89,9 +88,10 @@ export class schoolController{
 
     static async editSchoolId(req, res) {
         try {
-          const id = req.params.id;
-          const datosActualizados = req.body;
-          const escuelaActualizada = await SchoolModel.findByIdAndUpdate(id, datosActualizados, {new: true});
+            const id = req.params.id;
+            const datosActualizados = req.body;
+            const escuelaActualizada = await SchoolModel.findByIdAndUpdate(id, datosActualizados, {new: true});
+            console.log(id)
           res.status(200).json({escuelaActualizada });
         } catch (error) {
           res.status(404).json({'message': `Escuela con el ID: ${req.params.id} no fue encontrado`});
