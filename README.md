@@ -42,8 +42,8 @@ Antes de poder crear una escuela, el usuario debe:
 ## 📦 Instalación
 
 ```bash
-git clone https://github.com/tuusuario/tu-repo.git
-cd tu-repo
+git clone [https://github.com/tuusuario/tu-repo.git](https://github.com/ticiano-p/AplicacionesHibridas_PI.git)
+cd AplicacionesHibridas_PI
 npm install
 npm start
 
